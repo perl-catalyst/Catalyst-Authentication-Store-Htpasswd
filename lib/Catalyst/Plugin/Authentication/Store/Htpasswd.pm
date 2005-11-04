@@ -1,18 +1,18 @@
 #!/usr/bin/perl
 
-package Catalyst::Plugin::Authentication::Store::Minimal;
+package Catalyst::Plugin::Authentication::Store::Htpasswd;
 
 use strict;
 use warnings;
 
-use Catalyst::Plugin::Authentication::Store::Minimal::Backend;
+use Catalyst::Plugin::Authentication::Store::Htpasswd::Backend;
 
 sub setup {
     my $c = shift;
 
     $c->default_auth_store(
-        Catalyst::Plugin::Authentication::Store::Minimal::Backend->new(
-            $c->config->{authentication}{users}
+        Catalyst::Plugin::Authentication::Store::Htpasswd::Backend->new(
+            $c->config->{authentication}{htpasswd}
         )
     );
 
@@ -27,24 +27,18 @@ __END__
 
 =head1 NAME
 
-Catalyst::Plugin::Authentication::Store::Minimal - Authentication
+Catalyst::Plugin::Authentication::Store::Htpasswd - Authentication
 database in C<<$c->config>>.
 
 =head1 SYNOPSIS
 
     use Catalyst qw/
       Authentication
-      Authentication::Store::Minimal
+      Authentication::Store::Htpasswd
       Authentication::Credential::Password
       /;
 
-    __PACKAGE__->config->{authentication}{users} = {
-        name => {
-            password => "s3cr3t",
-            roles    => [qw/admin editor/],
-            ...
-        },
-    };
+    __PACKAGE__->config->{authentication}{htpasswd} = "...";
 
     sub login : Global {
         my ( $self, $c ) = @_;
@@ -54,14 +48,8 @@ database in C<<$c->config>>.
 
 =head1 DESCRIPTION
 
-This authentication store plugin lets you create a very quick and dirty user
-database in your application's config hash.
-
-It's purpose is mainly for testing, and it should probably be replaced by a
-more "serious" store for production.
-
-The hash in the config, as well as the user objects/hashes are freely mutable
-at runtime.
+This plugin uses C<Apache::Htpasswd> to let your application use C<.htpasswd>
+files for it's authentication storage.
 
 =head1 METHODS
 
@@ -71,6 +59,16 @@ at runtime.
 
 This method will popultate C<< $c->config->{authentication}{store} >> so that
 L<Catalyst::Plugin::Authentication/default_auth_store> can use it.
+
+=back
+
+=head1 CONFIGURATION
+
+=over 4
+
+=item $c->config->{authentication}{htpasswd}
+
+The path to the htpasswd file.
 
 =back
 

@@ -1,38 +1,34 @@
 #!/usr/bin/perl
 
-package Catalyst::Plugin::Authentication::Store::Minimal::Backend;
+package Catalyst::Plugin::Authentication::Store::Htpasswd::Backend;
+use base qw/Class::Accessor::Fast/;
 
 use strict;
 use warnings;
 
-use Catalyst::Plugin::Authentication::User::Hash;
-use Scalar::Util ();
+use Apache::Htpasswd;
+use Catalyst::Plugin::Authentication::Store::Htpasswd::User;
+
+BEGIN { __PACKAGE__->mk_accessors(qw/file/) }
 
 sub new {
-    my ( $class, $hash ) = @_;
+    my ( $class, $file, @extra) = @_;
 
-    bless { hash => $hash }, $class;
+    bless { file => ( ref($file) ? $file : Apache::Htpasswd->new($file, @extra) ) },
+      $class;
 }
 
 sub get_user {
     my ( $self, $id ) = @_;
-
-	my $user = $self->{hash}{$id};
-
-	bless $user, "Catalyst::Plugin::Authentication::User::Hash"
-	  unless Scalar::Util::blessed($user);
-
-    return $user;
+    Catalyst::Plugin::Authentication::Store::Htpasswd::User->new( $id,
+        $self->file );
 }
 
 sub user_supports {
     my $self = shift;
 
-    # choose a random user
-    scalar keys %{ $self->{hash} };
-    ( undef, my $user ) = each %{ $self->{hash} };
-
-    $user->supports(@_);
+    # this can work as a class method
+    Catalyst::Plugin::Authentication::Store::Htpasswd::User->supports(@_);
 }
 
 __PACKAGE__;
@@ -43,15 +39,15 @@ __END__
 
 =head1 NAME
 
-Catalyst::Plugin::Authentication::Store::Minimal::Backend - Minimal
+Catalyst::Plugin::Authentication::Store::Htpasswd::Backend - Htpasswd
 authentication storage backend.
 
 =head1 SYNOPSIS
 
-    # you probably just want Store::Minimal under most cases,
+    # you probably just want Store::Htpasswd under most cases,
     # but if you insist you can instantiate your own store:
 
-    use Catalyst::Plugin::Authentication::Store::Minimal::Backend;
+    use Catalyst::Plugin::Authentication::Store::Htpasswd::Backend;
 
     use Catalyst qw/
         Authentication
@@ -62,7 +58,7 @@ authentication storage backend.
         user => { password => "s3cr3t" },
     );
     
-    our $users = Catalyst::Plugin::Authentication::Store::Minimal::Backend->new(\%users);
+    our $users = Catalyst::Plugin::Authentication::Store::Htpasswd::Backend->new(\%users);
 
     sub action : Local {
         my ( $self, $c ) = @_;
@@ -73,8 +69,8 @@ authentication storage backend.
 
 =head1 DESCRIPTION
 
-You probably want L<Catalyst::Plugin::Authentication::Store::Minimal>, unless
-you are mixing several stores in a single app and one of them is Minimal.
+You probably want L<Catalyst::Plugin::Authentication::Store::Htpasswd>, unless
+you are mixing several stores in a single app and one of them is Htpasswd.
 
 Otherwise, this lets you create a store manually.
 
