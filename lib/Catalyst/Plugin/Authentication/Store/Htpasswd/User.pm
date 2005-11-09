@@ -6,15 +6,12 @@ use base qw/Catalyst::Plugin::Authentication::User Class::Accessor::Fast/;
 use strict;
 use warnings;
 
-BEGIN { __PACKAGE__->mk_accessors(qw/file name/) }
+BEGIN { __PACKAGE__->mk_accessors(qw/user/) }
 
 sub new {
-	my ( $class, $name, $file ) = @_;
+	my ( $class, $user ) = @_;
 
-	bless {
-		name => $name,
-		file => $file,
-	}, $class;
+	bless { user => $user }, $class;
 }
 
 sub supported_features {
@@ -28,17 +25,12 @@ sub supported_features {
 sub check_password {
 	my ( $self, $password ) = @_;
 
-	return $self->file->htCheckPassword( $self->name, $password );
+	return $self->user->check_password( $password );
 }
 
 sub roles {
 	my $self = shift;
-	split( ",", $self->info_string );
-}
-
-sub info_string {
-	my $self = shift;
-	$self->file->fetchInfo( $self->name );
+	split( ",", $self->user->extra_info );
 }
 
 __PACKAGE__;

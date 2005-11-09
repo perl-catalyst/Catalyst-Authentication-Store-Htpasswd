@@ -6,22 +6,20 @@ use base qw/Class::Accessor::Fast/;
 use strict;
 use warnings;
 
-use Apache::Htpasswd;
+use Authen::Htpasswd;
 use Catalyst::Plugin::Authentication::Store::Htpasswd::User;
 
 BEGIN { __PACKAGE__->mk_accessors(qw/file/) }
 
 sub new {
-    my ( $class, $file, @extra) = @_;
+    my ( $class, $file, %extra ) = @_;
 
-    bless { file => ( ref($file) ? $file : Apache::Htpasswd->new($file, @extra) ) },
-      $class;
+    bless { file => ( ref $file ? $file : Authen::Htpasswd->new($file, \%extra) ) }, $class;
 }
 
 sub get_user {
     my ( $self, $id ) = @_;
-    Catalyst::Plugin::Authentication::Store::Htpasswd::User->new( $id,
-        $self->file );
+    Catalyst::Plugin::Authentication::Store::Htpasswd::User->new( $self->file->lookup_user($id) );
 }
 
 sub user_supports {

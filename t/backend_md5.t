@@ -19,16 +19,16 @@ my $m; BEGIN { use_ok($m = "Catalyst::Plugin::Authentication::Store::Htpasswd::B
 
 (undef, my $tmp) = tempfile();
 
-my $passwd = Apache::Htpasswd->new({ passwdFile => "$tmp", UseMD5 => 1 });
+my $passwd = Authen::Htpasswd->new($tmp, { encrypt_hash => 'md5' });
 
-$passwd->htpasswd("user", "s3cr3t");
+$passwd->add_user("user", "s3cr3t");
 
 
 can_ok($m, "new");
 isa_ok(my $o = $m->new( $passwd ), $m);
 
 can_ok($m, "file");
-isa_ok( $o->file, "Apache::Htpasswd");
+isa_ok( $o->file, "Authen::Htpasswd");
 
 
 can_ok( $m, "user_supports");
