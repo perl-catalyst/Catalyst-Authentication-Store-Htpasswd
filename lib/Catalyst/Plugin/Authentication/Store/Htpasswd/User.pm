@@ -8,6 +8,8 @@ use warnings;
 
 BEGIN { __PACKAGE__->mk_accessors(qw/user/) }
 
+use overload '""' => sub { shift->user->username };
+
 sub new {
 	my ( $class, $user ) = @_;
 
@@ -18,7 +20,8 @@ sub supported_features {
 	return {
 		password => {
 			self_check => 1,
-		}
+		},
+		session => 1
 	};
 }
 
@@ -31,6 +34,16 @@ sub check_password {
 sub roles {
 	my $self = shift;
 	split( ",", $self->user->extra_info );
+}
+
+sub for_session {
+    my $self = shift;
+    return $self;
+}
+
+sub from_session {
+    my ($class,$c,$user) = @_;
+    return $user;
 }
 
 __PACKAGE__;
