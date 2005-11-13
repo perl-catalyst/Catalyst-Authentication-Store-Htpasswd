@@ -38,7 +38,7 @@ sub roles {
 
 sub for_session {
     my $self = shift;
-    return $self;
+    return $self->user->username;
 }
 
 sub from_session {
