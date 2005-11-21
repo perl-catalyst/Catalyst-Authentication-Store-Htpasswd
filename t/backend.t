@@ -38,3 +38,13 @@ can_ok( $u, "check_password");
 ok( $u->check_password( "s3cr3t" ), "password is s3cr3t");
 
 
+ok( $m->user_supports(qw/session/), "user_supports session");
+
+is( $u->store, $o, "can get store");
+
+can_ok( $m, "from_session" );
+can_ok( $u, "for_session" );
+
+my $recovered = $u->store->from_session( undef, $u->for_session );
+
+is( $recovered->username, $u->username, "recovery from session works");

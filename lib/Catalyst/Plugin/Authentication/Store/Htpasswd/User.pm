@@ -6,14 +6,14 @@ use base qw/Catalyst::Plugin::Authentication::User Class::Accessor::Fast/;
 use strict;
 use warnings;
 
-BEGIN { __PACKAGE__->mk_accessors(qw/user/) }
+BEGIN { __PACKAGE__->mk_accessors(qw/user store/) }
 
 use overload '""' => sub { shift->user->username };
 
 sub new {
-	my ( $class, $user ) = @_;
+	my ( $class, $store, $user ) = @_;
 
-	bless { user => $user }, $class;
+	bless { store => $store, user => $user }, $class;
 }
 
 sub supported_features {
@@ -41,9 +41,14 @@ sub for_session {
     return $self->user->username;
 }
 
-sub from_session {
-    my ($class,$c,$user) = @_;
-    return $user;
+sub AUTOLOAD {
+	my $self = shift;
+	
+	( my $method ) = ( our $AUTOLOAD =~ /([^:]+)$/ );
+
+	return if $method eq "DESTROY";
+	
+	$self->user->$method;
 }
 
 __PACKAGE__;

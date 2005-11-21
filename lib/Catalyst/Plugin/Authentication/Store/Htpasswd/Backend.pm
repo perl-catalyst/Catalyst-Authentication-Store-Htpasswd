@@ -19,7 +19,7 @@ sub new {
 
 sub get_user {
     my ( $self, $id ) = @_;
-    Catalyst::Plugin::Authentication::Store::Htpasswd::User->new( $self->file->lookup_user($id) );
+    Catalyst::Plugin::Authentication::Store::Htpasswd::User->new( $self, $self->file->lookup_user($id) );
 }
 
 sub user_supports {
@@ -27,6 +27,11 @@ sub user_supports {
 
     # this can work as a class method
     Catalyst::Plugin::Authentication::Store::Htpasswd::User->supports(@_);
+}
+
+sub from_session {
+	my ( $self, $c, $id ) = @_;
+	$self->get_user( $id );
 }
 
 __PACKAGE__;
