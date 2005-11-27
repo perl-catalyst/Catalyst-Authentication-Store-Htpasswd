@@ -8,12 +8,17 @@ use warnings;
 
 BEGIN { __PACKAGE__->mk_accessors(qw/user store/) }
 
-use overload '""' => sub { shift->user->username };
+use overload '""' => sub { shift->id }, fallback => 1;
 
 sub new {
 	my ( $class, $store, $user ) = @_;
 
 	bless { store => $store, user => $user }, $class;
+}
+
+sub id {
+    my $self = shift;
+    return $self->user->username;
 }
 
 sub supported_features {
@@ -27,18 +32,17 @@ sub supported_features {
 
 sub check_password {
 	my ( $self, $password ) = @_;
-
 	return $self->user->check_password( $password );
 }
 
 sub roles {
 	my $self = shift;
-	split( ",", $self->user->extra_info );
+	split( /,/, $self->user->extra_info );
 }
 
 sub for_session {
     my $self = shift;
-    return $self->user->username;
+    return $self->id;
 }
 
 sub AUTOLOAD {
