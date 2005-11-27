@@ -5,6 +5,8 @@ package Catalyst::Plugin::Authentication::Store::Htpasswd;
 use strict;
 use warnings;
 
+our $VERSION = '0.01';
+
 use Catalyst::Plugin::Authentication::Store::Htpasswd::Backend;
 
 sub setup {
