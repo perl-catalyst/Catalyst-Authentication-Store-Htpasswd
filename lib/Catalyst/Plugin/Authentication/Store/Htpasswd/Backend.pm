@@ -79,25 +79,27 @@ Otherwise, this lets you create a store manually.
 
 =head1 METHODS
 
-=over 4
-
-=item new $hash_ref
+=head2 new $hash_ref
 
 Constructs a new store object, which uses the supplied hash ref as it's backing
 structure.
 
-=item get_user $id
+=head2 get_user $id
 
 Keys the hash by $id and returns the value.
 
 If the return value is unblessed it will be blessed as
 L<Catalyst::Plugin::Authentication::User::Hash>.
 
-=item user_supports
+=head2 user_supports
 
 Chooses a random user from the hash and delegates to it.
 
-=back
+=head1 COPYRIGHT & LICNESE
+
+	Copyright (c) 2005 the aforementioned authors. All rights
+	reserved. This program is free software; you can redistribute
+	it and/or modify it under the same terms as Perl itself.
 
 =cut
 

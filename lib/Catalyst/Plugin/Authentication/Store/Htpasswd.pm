@@ -38,7 +38,7 @@ database in C<<$c->config>>.
       Authentication::Credential::Password
       /;
 
-    __PACKAGE__->config->{authentication}{htpasswd} = "...";
+    __PACKAGE__->config->{authentication}{htpasswd} = "passwdfile";
 
     sub login : Global {
         my ( $self, $c ) = @_;
@@ -48,29 +48,37 @@ database in C<<$c->config>>.
 
 =head1 DESCRIPTION
 
-This plugin uses C<Apache::Htpasswd> to let your application use C<.htpasswd>
+This plugin uses C<Authen::Htpasswd> to let your application use C<.htpasswd>
 files for it's authentication storage.
 
 =head1 METHODS
 
-=over 4
-
-=item setup
+=head2 setup
 
 This method will popultate C<< $c->config->{authentication}{store} >> so that
 L<Catalyst::Plugin::Authentication/default_auth_store> can use it.
 
-=back
-
 =head1 CONFIGURATION
 
-=over 4
-
-=item $c->config->{authentication}{htpasswd}
+=head2 $c->config->{authentication}{htpasswd}
 
 The path to the htpasswd file.
 
-=back
+=head1 AUTHORS
+
+Yuval Kogman C<nothingmuch@woobling.org>
+
+David Kamholz C<dkamholz@cpan.org>
+
+=head1 SEE ALSO
+
+L<Authen::Htpasswd>.
+
+=head1 COPYRIGHT & LICNESE
+
+	Copyright (c) 2005 the aforementioned authors. All rights
+	reserved. This program is free software; you can redistribute
+	it and/or modify it under the same terms as Perl itself.
 
 =cut
 

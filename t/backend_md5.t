@@ -11,8 +11,6 @@ BEGIN {
 	plan tests => 12;
 }
 
-use Path::Class;
-
 use File::Temp qw/tempfile/;
 
 my $m; BEGIN { use_ok($m = "Catalyst::Plugin::Authentication::Store::Htpasswd::Backend") }
@@ -23,13 +21,11 @@ my $passwd = Authen::Htpasswd->new($tmp, { encrypt_hash => 'md5' });
 
 $passwd->add_user("user", "s3cr3t");
 
-
 can_ok($m, "new");
 isa_ok(my $o = $m->new( $passwd ), $m);
 
 can_ok($m, "file");
 isa_ok( $o->file, "Authen::Htpasswd");
-
 
 can_ok( $m, "user_supports");
 ok( $m->user_supports(qw/password self_check/), "user_supports self check" );
