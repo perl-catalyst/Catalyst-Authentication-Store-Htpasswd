@@ -1,0 +1,5 @@
+0.011 Sun Nov 27 23:18:21 CET 2005
+    - doh, add Authen::Htpasswd to requirements
+
+0.01 Sun Nov 27 22:53:50 CET 2005
+    - initial release
