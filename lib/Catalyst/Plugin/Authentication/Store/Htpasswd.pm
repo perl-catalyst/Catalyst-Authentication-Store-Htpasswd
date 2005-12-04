@@ -76,7 +76,7 @@ David Kamholz C<dkamholz@cpan.org>
 
 L<Authen::Htpasswd>.
 
-=head1 COPYRIGHT & LICNESE
+=head1 COPYRIGHT & LICENSE
 
 	Copyright (c) 2005 the aforementioned authors. All rights
 	reserved. This program is free software; you can redistribute
