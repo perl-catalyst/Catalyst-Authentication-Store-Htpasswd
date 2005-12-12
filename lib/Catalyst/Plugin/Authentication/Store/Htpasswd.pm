@@ -30,7 +30,7 @@ __END__
 =head1 NAME
 
 Catalyst::Plugin::Authentication::Store::Htpasswd - Authentication
-database in C<<$c->config>>.
+database in C<< $c->config >>.
 
 =head1 SYNOPSIS
 
