@@ -13,6 +13,8 @@ use overload '""' => sub { shift->id }, fallback => 1;
 sub new {
 	my ( $class, $store, $user ) = @_;
 
+	return unless $user;
+
 	bless { store => $store, user => $user }, $class;
 }
 
