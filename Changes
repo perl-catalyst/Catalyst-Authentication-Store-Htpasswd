@@ -1,3 +1,7 @@
+0.02  Sun Jan  1 13:45:33 IST 2006
+    - fix condition where $user is false and still gets a method call on it
+    - embarracing doc typos copy pasted by Yuval were fixed too ;-)
+
 0.011 Sun Nov 27 23:18:21 CET 2005
     - doh, add Authen::Htpasswd to requirements
 
