@@ -29,6 +29,7 @@ sub supported_features {
 			self_check => 1,
 		},
 		session => 1
+        roles => 1,
 	};
 }
 
