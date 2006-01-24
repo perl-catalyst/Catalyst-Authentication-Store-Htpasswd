@@ -28,7 +28,7 @@ sub supported_features {
 		password => {
 			self_check => 1,
 		},
-		session => 1
+		session => 1,
         roles => 1,
 	};
 }
