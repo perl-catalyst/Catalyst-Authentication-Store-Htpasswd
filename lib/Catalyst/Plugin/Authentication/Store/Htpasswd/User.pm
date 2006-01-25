@@ -20,7 +20,7 @@ sub new {
 
 sub id {
     my $self = shift;
-    return $self->user->username;
+    return ( $self->user || return )->username;
 }
 
 sub supported_features {
