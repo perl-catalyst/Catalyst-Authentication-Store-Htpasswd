@@ -1,4 +1,5 @@
-0.02  Sun Jan  1 13:45:33 IST 2006
+0.02  Wed Feb  8 01:18:17 CET 2006
+    - work properly again with roles
     - fix condition where $user is false and still gets a method call on it
     - embarracing doc typos copy pasted by Yuval were fixed too ;-)
 

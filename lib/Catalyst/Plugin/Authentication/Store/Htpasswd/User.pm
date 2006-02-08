@@ -25,10 +25,10 @@ sub id {
 
 sub supported_features {
 	return {
-		password => {
-			self_check => 1,
+        password => {
+            self_check => 1,
 		},
-		session => 1,
+        session => 1,
         roles => 1,
 	};
 }
