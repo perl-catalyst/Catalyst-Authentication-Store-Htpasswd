@@ -29,8 +29,8 @@ __END__
 
 =head1 NAME
 
-Catalyst::Plugin::Authentication::Store::Htpasswd - Authentication
-database in C<< $c->config >>.
+Catalyst::Plugin::Authentication::Store::Htpasswd - L<Authen::Htpasswd> based
+user storage/authentication.
 
 =head1 SYNOPSIS
 
