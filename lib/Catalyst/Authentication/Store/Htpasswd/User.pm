@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
-package Catalyst::Plugin::Authentication::Store::Htpasswd::User;
-use base qw/Catalyst::Plugin::Authentication::User Class::Accessor::Fast/;
+package Catalyst::Authentication::Store::Htpasswd::User;
+use base qw/Catalyst::Authentication::User Class::Accessor::Fast/;
 
 use strict;
 use warnings;
@@ -59,7 +59,7 @@ sub AUTOLOAD {
 	$self->user->$method;
 }
 
-__PACKAGE__;
+1;
 
 __END__
 
@@ -67,13 +67,13 @@ __END__
 
 =head1 NAME
 
-Catalyst::Plugin::Authentication::Store::Htpasswd::User - A user object
+Catalyst::Authentication::Store::Htpasswd::User - A user object
 representing an entry in an htpasswd file.
 
 =head1 DESCRIPTION
 
 This object wraps an L<Authen::Htpasswd::User> object. An instance of it will be returned
-by C<< $c->user >> when using L<Catalyst::Plugin::Authentication::Store::Htpasswd>. Methods 
+by C<< $c->user >> when using L<Catalyst::Authentication::Store::Htpasswd>. Methods 
 not defined in this module are passed through to the L<Authen::Htpasswd::User> object. The
 object stringifies to the username.
 
@@ -82,7 +82,7 @@ object stringifies to the username.
 =head2 new($store,$user)
 
 Creates a new object from a store object, normally an instance of 
-L<Catalyst::Plugin::Authentication::Store::Htpasswd::Backend>, and a user object,
+L<Catalyst::Authentication::Store::Htpasswd::Backend>, and a user object,
 normally an instance of L<Authen::Htpasswd::User>.
 
 =head2 id
@@ -97,6 +97,22 @@ Returns whether the password is valid.
 
 Returns an array of roles, which is extracted from a comma-separated list in the
 third field of the htpasswd file.
+
+=head2 for_session
+
+Returns the username, which is then stored in the session.
+
+=head2 supported_features
+
+Returns data about which featurs this user module supports.
+
+=head1 AUTHORS
+
+Yuval Kogman C<nothingmuch@woobling.org>
+
+David Kamholz C<dkamholz@cpan.org>
+
+Tomas Doran C<bobtfish@bobtfish.net>
 
 =head1 COPYRIGHT & LICENSE
 

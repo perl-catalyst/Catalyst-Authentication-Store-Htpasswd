@@ -7,7 +7,7 @@ use Test::More tests => 19;
 
 use File::Temp qw/tempfile/;
 
-my $m; BEGIN { use_ok($m = "Catalyst::Plugin::Authentication::Store::Htpasswd::Backend") }
+my $m; BEGIN { use_ok($m = "Catalyst::Authentication::Store::Htpasswd") }
 
 (undef, my $tmp) = tempfile();
 
@@ -16,7 +16,7 @@ my $passwd = Authen::Htpasswd->new($tmp);
 $passwd->add_user("user", "s3cr3t");
 
 can_ok($m, "new");
-isa_ok(my $o = $m->new( $passwd ), $m);
+isa_ok(my $o = $m->new( { file => $passwd } ), $m);
 
 can_ok($m, "file");
 isa_ok( $o->file, "Authen::Htpasswd");
@@ -24,9 +24,9 @@ isa_ok( $o->file, "Authen::Htpasswd");
 can_ok( $m, "user_supports");
 ok( $m->user_supports(qw/password self_check/), "user_supports self check" );
 
-can_ok($m, "get_user");
-isa_ok( my $u = $o->get_user("user"), "Catalyst::Plugin::Authentication::Store::Htpasswd::User");
-isa_ok( $u, "Catalyst::Plugin::Authentication::User");
+can_ok($m, "find_user");
+isa_ok( my $u = $o->find_user({ username => "user"}), "Catalyst::Authentication::Store::Htpasswd::User");
+isa_ok( $u, "Catalyst::Authentication::User");
 
 can_ok( $u, "supports");
 ok( $u->supports(qw/password self_check/), "htpasswd users check their own passwords");

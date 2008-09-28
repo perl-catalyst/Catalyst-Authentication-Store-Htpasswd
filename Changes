@@ -1,3 +1,6 @@
+0.03  XXX XXX  x XX:XX:XX GMT 2008
+    - Change from Module::Build to Module::Install
+
 0.02  Wed Feb  8 01:18:17 CET 2006
     - work properly again with roles
     - fix condition where $user is false and still gets a method call on it
