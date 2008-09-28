@@ -1,1 +1,4 @@
 . Paths to htpasswd which start with / should be taken from root, not the app root
+. Better docs
+. Configurable user class
+. Configurable username/password fields.

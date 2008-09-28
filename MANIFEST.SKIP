@@ -32,3 +32,6 @@
 
 # skip OS X finder file
 \.DS_Store
+
+# Don't distribute the shipit config.
+.shipit
