@@ -22,7 +22,6 @@ t/lib/script/testapp_test.pl
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Root.pm
 t/lib/TestApp/htpasswd
-t/lib/TestApp/Model/Tangram.pm
 t/live-test.t
 t/pod-coverage.t
 t/pod.t

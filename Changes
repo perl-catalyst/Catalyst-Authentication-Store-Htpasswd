@@ -1,3 +1,7 @@
+1.001  Mon Sept  29 18:56:30 GMT 2008
+    - Remove Tangram from test application models so that tests
+      pass for other people. FAIL.
+
 1.000  Sun Sept  28 16:58:30 GMT 2008
     - Change from Module::Build to Module::Install
     - Update to the new authentication framework.
