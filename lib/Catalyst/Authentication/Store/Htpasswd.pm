@@ -11,34 +11,37 @@ use Scalar::Util qw/blessed/;
 
 our $VERSION = '1.001';
 
-BEGIN { __PACKAGE__->mk_accessors(qw/file/) }
+BEGIN { __PACKAGE__->mk_accessors(qw/file user_field user_class/) }
 
 sub new {
     my ($class, $config, $app, $realm) = @_;
     
     my $file = delete $config->{file};
-    unless (ref $file) { # FIXME - file not in app..
-        my $filename = $app->path_to($file)->stringify;
+    unless (ref $file) {
+        my $filename = ($file =~ m|^/|) ? $file : $app->path_to($file)->stringify;
         die("Cannot find htpasswd file: $filename\n") unless (-r $filename);
         $file = Authen::Htpasswd->new($filename);
     }
     $config->{file} = $file;
+    $config->{user_class} ||= __PACKAGE__ . '::User';
+    $config->{user_field} ||= 'username';
     
     bless { %$config }, $class;
 }
 
 sub find_user {
     my ($self, $authinfo, $c) = @_;
-    # FIXME - change username
-    my $htpasswd_user = $self->file->lookup_user($authinfo->{username});
-    Catalyst::Authentication::Store::Htpasswd::User->new( $self, $htpasswd_user );
+    my $htpasswd_user = $self->file->lookup_user($authinfo->{$self->user_field});
+    $self->user_class->new( $self, $htpasswd_user );
 }
 
 sub user_supports {
     my $self = shift;
 
-    # this can work as a class method
-    Catalyst::Authentication::Store::Htpasswd::User->supports(@_);
+    # this can work as a class method, but in that case you can't have 
+    # a custom user class
+    ref($self) ? $self->user_class->supports(@_)
+        : Catalyst::Authentication::Store::Htpasswd::User->supports(@_);
 }
 
 sub from_session {
@@ -54,7 +57,7 @@ __END__
 
 =head1 NAME
 
-Catalyst::Authentication::Store::Htpasswd - L<Authen::Htpasswd> based
+Catalyst::Authentication::Store::Htpasswd - Authen::Htpasswd based
 user storage/authentication.
 
 =head1 SYNOPSIS
@@ -115,7 +118,36 @@ Delegates the user lookup to C< find_user >
 
 =head2 file
 
-The path to the htpasswd file, this is taken from the application root.
+The path to the htpasswd file. If the path starts with a slash, then it is assumed to be a fully
+qualified path, otherwise the path is fed through C< $c->path_to > and so normalised to the 
+application root.
+
+Alternatively, it is possible to pass in an L< Authen::Htpasswd > object here, and this will be
+used as the htpasswd file.
+
+=head2 user_class
+
+Change the user class which this store returns. Defaults to L< Catalyst::Authentication::Store::Htpasswd::User >.
+This can be used to add additional functionality to the user class by sub-classing it, but will not normally be
+needed.
+
+=head2 user_field
+
+Change the field that the username is found in in the information passed into the call to C< $c->authenticate() >.
+
+This defaults to I< username >, and generally you should be able to use the module as shown in the synopsis, however
+if you need a different field name then this setting can change the default.
+
+Example:
+
+    __PACKAGE__->config( authentication => { realms => { test => {
+                    store => {
+                        class => 'Htpasswd',
+                        user_field => 'email_address',
+                    },
+    }}});
+    # Later in your code
+    $c->authenticate({ email_address => $c->req->param("email"), password => $c->req->param("password") });
 
 =head1 AUTHORS
 

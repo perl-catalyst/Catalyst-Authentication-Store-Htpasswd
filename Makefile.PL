@@ -8,5 +8,6 @@ requires 'Catalyst::Plugin::Authentication' => '0.10006';
 requires 'Authen::Htpasswd' => '0.13';
 requires 'Class::Accessor::Fast';
 requires 'Crypt::PasswdMD5';
+build_requires 'Test::WWW::Mechanize::Catalyst';
 
 WriteAll;  

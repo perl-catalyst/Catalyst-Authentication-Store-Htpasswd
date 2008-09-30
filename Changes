@@ -1,3 +1,9 @@
+1.002  ??? Oct   ?? ??:??:?? GMT 2008
+    - Add Test::WWW::Mechanize::Catalyst to build_requires.
+      CPANTs will keep hitting me until I get it right :(
+    - Add code and docs for user_field configuration option
+    - Add code and docs for user_class configuration option
+
 1.001  Mon Sept  29 18:56:30 GMT 2008
     - Remove Tangram from test application models so that tests
       pass for other people. FAIL.
