@@ -6,7 +6,7 @@ use base qw/Catalyst::Authentication::User Class::Accessor::Fast/;
 use strict;
 use warnings;
 
-BEGIN { __PACKAGE__->mk_accessors(qw/user store/) }
+BEGIN { __PACKAGE__->mk_accessors(qw/_user _store/) }
 
 use overload '""' => sub { shift->id }, fallback => 1;
 
@@ -15,12 +15,12 @@ sub new {
 
 	return unless $user;
 
-	bless { store => $store, user => $user }, $class;
+	bless { _store => $store, _user => $user }, $class;
 }
 
 sub id {
     my $self = shift;
-    return $self->user->username;
+    return $self->_user->username;
 }
 
 sub supported_features {
@@ -35,19 +35,18 @@ sub supported_features {
 
 sub check_password {
 	my ( $self, $password ) = @_;
-	return $self->user->check_password( $password );
+	return $self->_user->check_password( $password );
 }
 
 sub roles {
 	my $self = shift;
-	my $field = $self->user->extra_info->[0];
+	my $field = $self->_user->extra_info->[0];
 	return defined $field ? split /,/, $field : ();
 }
 
-sub for_session {
-    my $self = shift;
-    return $self->id;
-}
+*for_session = \&id;
+
+*get_object = \&_user;
 
 sub AUTOLOAD {
 	my $self = shift;
@@ -56,7 +55,7 @@ sub AUTOLOAD {
 
 	return if $method eq "DESTROY";
 	
-	$self->user->$method;
+	$self->_user->$method;
 }
 
 1;
@@ -105,6 +104,10 @@ Returns the username, which is then stored in the session.
 =head2 supported_features
 
 Returns data about which featurs this user module supports.
+
+=head2 get_object
+
+Returns the underlieing L<Authen::Htpasswd::User> object for this user
 
 =head1 AUTHORS
 

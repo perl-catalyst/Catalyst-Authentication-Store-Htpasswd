@@ -3,3 +3,5 @@
 . Test configurable user class
 . Test configurable username field.
 . Configurable password field.
+. Test autoload
+. Test stringification

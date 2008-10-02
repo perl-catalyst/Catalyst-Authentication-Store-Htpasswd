@@ -9,7 +9,7 @@ use Authen::Htpasswd;
 use Catalyst::Authentication::Store::Htpasswd::User;
 use Scalar::Util qw/blessed/;
 
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 BEGIN { __PACKAGE__->mk_accessors(qw/file user_field user_class/) }
 
@@ -93,7 +93,7 @@ user storage/authentication.
 
 =head1 DESCRIPTION
 
-This plugin uses C<Authen::Htpasswd> to let your application use C<.htpasswd>
+This plugin uses L<Authen::Htpasswd> to let your application use C<<.htpasswd>>
 files for it's authentication storage.
 
 =head1 METHODS
@@ -112,7 +112,7 @@ Delegates to L<Catalyst::Authentication::Store::Htpasswd::User->user_supports|Ca
 
 =head2 from_session
 
-Delegates the user lookup to C< find_user >
+Delegates the user lookup to C<< find_user >>
 
 =head1 CONFIGURATION
 
@@ -133,7 +133,7 @@ needed.
 
 =head2 user_field
 
-Change the field that the username is found in in the information passed into the call to C< $c->authenticate() >.
+Change the field that the username is found in in the information passed into the call to C<< $c->authenticate() >>.
 
 This defaults to I< username >, and generally you should be able to use the module as shown in the synopsis, however
 if you need a different field name then this setting can change the default.
@@ -151,11 +151,11 @@ Example:
 
 =head1 AUTHORS
 
-Yuval Kogman C<nothingmuch@woobling.org>
+Yuval Kogman C<<nothingmuch@woobling.org>>
 
-David Kamholz C<dkamholz@cpan.org>
+David Kamholz C<<dkamholz@cpan.org>>
 
-Tomas Doran C<bobtfish@bobtfish.net>
+Tomas Doran C<<bobtfish@bobtfish.net>>
 
 =head1 SEE ALSO
 

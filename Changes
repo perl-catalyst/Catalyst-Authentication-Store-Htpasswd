@@ -1,6 +1,7 @@
-1.002  ??? Oct   ?? ??:??:?? GMT 2008
-    - Add Test::WWW::Mechanize::Catalyst to build_requires.
-      CPANTs will keep hitting me until I get it right :(
+1.002  Thu Oct   02 09:20:30 GMT 2008
+    - Add Test::WWW::Mechanize::Catalyst and Test::use::ok
+      to build_requires. CPANTs will keep hitting me until 
+      I get it right :(
     - Add code and docs for user_field configuration option
     - Add code and docs for user_class configuration option
 
