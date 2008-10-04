@@ -1,7 +1,7 @@
 use strict;
 use inc::Module::Install;
 
-name 'Catalyst-Authenticaton-Store-Htpasswd';
+name 'Catalyst-Authentication-Store-Htpasswd';
 all_from 'lib/Catalyst/Authentication/Store/Htpasswd.pm';
 
 requires 'Catalyst::Plugin::Authentication' => '0.10006';

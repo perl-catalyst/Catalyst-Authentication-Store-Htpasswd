@@ -1,3 +1,7 @@
+1.003  Sat Oct   04 22:17:30 GMT 2008
+    - Typo in Makefile.PL makes the .tgz unpack to
+      improperly, RT#39817
+
 1.002  Thu Oct   02 09:20:30 GMT 2008
     - Add Test::WWW::Mechanize::Catalyst and Test::use::ok
       to build_requires. CPANTs will keep hitting me until 
