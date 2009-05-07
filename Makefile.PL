@@ -1,5 +1,5 @@
 use strict;
-use inc::Module::Install;
+use inc::Module::Install 0.87;
 
 name 'Catalyst-Authentication-Store-Htpasswd';
 all_from 'lib/Catalyst/Authentication/Store/Htpasswd.pm';
