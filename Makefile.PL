@@ -11,4 +11,6 @@ requires 'Crypt::PasswdMD5';
 build_requires 'Test::WWW::Mechanize::Catalyst';
 build_requires 'Test::use::ok';
 
+resources repository => 'http://dev.catalyst.perl.org/repos/Catalyst/Catalyst-Authentication-Store-Htpasswd/1.000/trunk/';
+
 WriteAll;  
