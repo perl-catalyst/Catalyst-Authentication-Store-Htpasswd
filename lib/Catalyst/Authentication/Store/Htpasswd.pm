@@ -119,7 +119,7 @@ Delegates the user lookup to C<< find_user >>
 =head2 file
 
 The path to the htpasswd file. If the path starts with a slash, then it is assumed to be a fully
-qualified path, otherwise the path is fed through C< $c->path_to > and so normalised to the 
+qualified path, otherwise the path is fed through C<< $c->path_to >> and so normalised to the 
 application root.
 
 Alternatively, it is possible to pass in an L< Authen::Htpasswd > object here, and this will be

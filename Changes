@@ -1,3 +1,5 @@
+    - Fix pod nit from RT#51733
+
 1.003  Sat Oct   04 22:17:30 GMT 2008
     - Typo in Makefile.PL makes the .tgz unpack to
       improperly, RT#39817
