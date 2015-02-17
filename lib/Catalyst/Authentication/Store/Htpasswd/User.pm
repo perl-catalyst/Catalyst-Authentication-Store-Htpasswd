@@ -71,7 +71,7 @@ __END__
 =head1 DESCRIPTION
 
 This object wraps an L<Authen::Htpasswd::User> object. An instance of it will be returned
-by C<< $c->user >> when using L<Catalyst::Authentication::Store::Htpasswd>. Methods 
+by C<< $c->user >> when using L<Catalyst::Authentication::Store::Htpasswd>. Methods
 not defined in this module are passed through to the L<Authen::Htpasswd::User> object. The
 object stringifies to the username.
 
@@ -80,7 +80,7 @@ object stringifies to the username.
 =head2 new($store,$user)
 
 Creates a new object from a store object, normally an instance of 
-L<Catalyst::Authentication::Store::Htpasswd::Backend>, and a user object,
+L<Catalyst::Plugin::Authentication::Store::Htpasswd::Backend>, and a user object,
 normally an instance of L<Authen::Htpasswd::User>.
 
 =head2 id

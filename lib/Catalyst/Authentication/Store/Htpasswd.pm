@@ -90,7 +90,7 @@ __END__
 
 =head1 DESCRIPTION
 
-This plugin uses L<Authen::Htpasswd> to let your application use C<<.htpasswd>>
+This plugin uses L<Authen::Htpasswd> to let your application use C<< .htpasswd >>
 files for it's authentication storage.
 
 =head1 METHODS
@@ -105,11 +105,12 @@ Looks up the user, and returns a Catalyst::Authentication::Store::Htpasswd::User
 
 =head2 user_supports
 
-Delegates to L<Catalyst::Authentication::Store::Htpasswd::User->user_supports|Catalyst::Authentication::Store::Htpasswd::User#user_supports>
+Delegates to L<< Catalyst::Authentication::User->supports|Catalyst::Authentication::User/supports >> or an
+override in L<user_class|/user_class>.
 
 =head2 from_session
 
-Delegates the user lookup to C<< find_user >>
+Delegates the user lookup to L<find_user|/find_user>
 
 =head1 CONFIGURATION
 
