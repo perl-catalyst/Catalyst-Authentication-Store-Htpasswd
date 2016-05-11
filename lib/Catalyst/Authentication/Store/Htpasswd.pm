@@ -122,12 +122,12 @@ The path to the htpasswd file. If the path starts with a slash, then it is assum
 qualified path, otherwise the path is fed through C<< $c->path_to >> and so normalised to the 
 application root.
 
-Alternatively, it is possible to pass in an L< Authen::Htpasswd > object here, and this will be
+Alternatively, it is possible to pass in an L<Authen::Htpasswd> object here, and this will be
 used as the htpasswd file.
 
 =head2 user_class
 
-Change the user class which this store returns. Defaults to L< Catalyst::Authentication::Store::Htpasswd::User >.
+Change the user class which this store returns. Defaults to L<Catalyst::Authentication::Store::Htpasswd::User>.
 This can be used to add additional functionality to the user class by sub-classing it, but will not normally be
 needed.
 
