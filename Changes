@@ -1,3 +1,5 @@
+1.004  Wed May 11 13:49:02 BST 2016
+    - Fix pod error for Hyperlinks
     - Fix pod nit from RT#51733
 
 1.003  Sat Oct   04 22:17:30 GMT 2008
