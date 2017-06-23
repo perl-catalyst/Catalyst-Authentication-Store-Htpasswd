@@ -11,7 +11,7 @@ use Authen::Htpasswd 0.13;
 use Catalyst::Authentication::Store::Htpasswd::User;
 use Scalar::Util qw/blessed/;
 
-our $VERSION = '1.005';
+our $VERSION = '1.006';
 
 BEGIN { __PACKAGE__->mk_accessors(qw/file user_field user_class/) }
 
