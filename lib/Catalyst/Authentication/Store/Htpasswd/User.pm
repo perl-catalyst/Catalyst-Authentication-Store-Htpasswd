@@ -6,6 +6,8 @@ use base qw/Catalyst::Authentication::User Class::Accessor::Fast/;
 use strict;
 use warnings;
 
+our $VERSION = '1.005';
+
 BEGIN { __PACKAGE__->mk_accessors(qw/_user _store/) }
 
 use overload '""' => sub { shift->id }, fallback => 1;
