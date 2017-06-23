@@ -1,6 +1,8 @@
 #!/usr/bin/perl
 
 package Catalyst::Authentication::Store::Htpasswd::User;
+# ABSTRACT: A user object representing an entry in an htpasswd file.
+
 use base qw/Catalyst::Authentication::User Class::Accessor::Fast/;
 
 use strict;
@@ -66,11 +68,6 @@ __END__
 
 =pod
 
-=head1 NAME
-
-Catalyst::Authentication::Store::Htpasswd::User - A user object
-representing an entry in an htpasswd file.
-
 =head1 DESCRIPTION
 
 This object wraps an L<Authen::Htpasswd::User> object. An instance of it will be returned
@@ -111,20 +108,4 @@ Returns data about which featurs this user module supports.
 
 Returns the underlieing L<Authen::Htpasswd::User> object for this user
 
-=head1 AUTHORS
-
-Yuval Kogman C<nothingmuch@woobling.org>
-
-David Kamholz C<dkamholz@cpan.org>
-
-Tomas Doran C<bobtfish@bobtfish.net>
-
-=head1 COPYRIGHT & LICENSE
-
-	Copyright (c) 2005 the aforementioned authors. All rights
-	reserved. This program is free software; you can redistribute
-	it and/or modify it under the same terms as Perl itself.
-
 =cut
-
-

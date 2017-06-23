@@ -1,0 +1,6 @@
+/.ackrc
+/.build/
+!/.gitignore
+/.latest
+/Catalyst-Authentication-Store-Htpasswd-*/
+/Catalyst-Authentication-Store-Htpasswd-*.tar.gz

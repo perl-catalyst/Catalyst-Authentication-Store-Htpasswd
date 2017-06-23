@@ -1,3 +1,9 @@
+Release history for Catalyst-Authentication-Store-Htpasswd
+
+{{$NEXT}}
+    - modernized the tooling, for 5.26 compatibility and to remove pod,
+      kwalitee tests from the user-facing test suite
+
 1.004     2016-05-11 12:49:02Z
     - Fix pod error for Hyperlinks
     - Fix pod nit from RT#51733

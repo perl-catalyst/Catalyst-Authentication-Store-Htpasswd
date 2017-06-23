@@ -1,11 +1,13 @@
 #!/usr/bin/perl
 
 package Catalyst::Authentication::Store::Htpasswd;
+# ABSTRACT: Authen::Htpasswd based user storage/authentication
+
 use base qw/Class::Accessor::Fast/;
 use strict;
 use warnings;
 
-use Authen::Htpasswd;
+use Authen::Htpasswd 0.13;
 use Catalyst::Authentication::Store::Htpasswd::User;
 use Scalar::Util qw/blessed/;
 
@@ -54,11 +56,6 @@ sub from_session {
 __END__
 
 =pod
-
-=head1 NAME
-
-Catalyst::Authentication::Store::Htpasswd - Authen::Htpasswd based
-user storage/authentication.
 
 =head1 SYNOPSIS
 
@@ -149,24 +146,8 @@ Example:
     # Later in your code
     $c->authenticate({ email_address => $c->req->param("email"), password => $c->req->param("password") });
 
-=head1 AUTHORS
-
-Yuval Kogman C<<nothingmuch@woobling.org>>
-
-David Kamholz C<<dkamholz@cpan.org>>
-
-Tomas Doran C<<bobtfish@bobtfish.net>>
-
 =head1 SEE ALSO
 
 L<Authen::Htpasswd>.
 
-=head1 COPYRIGHT & LICENSE
-
-	Copyright (c) 2005-2008 the aforementioned authors. All rights
-	reserved. This program is free software; you can redistribute
-	it and/or modify it under the same terms as Perl itself.
-
 =cut
-
-
