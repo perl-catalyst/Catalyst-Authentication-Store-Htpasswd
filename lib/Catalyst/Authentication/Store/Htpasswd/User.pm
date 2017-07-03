@@ -54,11 +54,11 @@ sub roles {
 
 sub AUTOLOAD {
 	my $self = shift;
-	
+
 	( my $method ) = ( our $AUTOLOAD =~ /([^:]+)$/ );
 
 	return if $method eq "DESTROY";
-	
+
 	$self->_user->$method;
 }
 
@@ -79,7 +79,7 @@ object stringifies to the username.
 
 =head2 new($store,$user)
 
-Creates a new object from a store object, normally an instance of 
+Creates a new object from a store object, normally an instance of
 L<Catalyst::Plugin::Authentication::Store::Htpasswd::Backend>, and a user object,
 normally an instance of L<Authen::Htpasswd::User>.
 

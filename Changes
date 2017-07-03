@@ -17,7 +17,7 @@ Release history for Catalyst-Authentication-Store-Htpasswd
 
 1.002     2008-10-02 09:20:30Z
     - Add Test::WWW::Mechanize::Catalyst and Test::use::ok
-      to build_requires. CPANTs will keep hitting me until 
+      to build_requires. CPANTs will keep hitting me until
       I get it right :(
     - Add code and docs for user_field configuration option
     - Add code and docs for user_class configuration option

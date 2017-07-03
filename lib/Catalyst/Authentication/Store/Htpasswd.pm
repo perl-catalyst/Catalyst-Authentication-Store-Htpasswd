@@ -17,7 +17,7 @@ BEGIN { __PACKAGE__->mk_accessors(qw/file user_field user_class/) }
 
 sub new {
     my ($class, $config, $app, $realm) = @_;
-    
+
     my $file = delete $config->{file};
     unless (ref $file) {
         my $filename = ($file =~ m|^/|) ? $file : $app->path_to($file)->stringify;
@@ -27,7 +27,7 @@ sub new {
     $config->{file} = $file;
     $config->{user_class} ||= __PACKAGE__ . '::User';
     $config->{user_field} ||= 'username';
-    
+
     bless { %$config }, $class;
 }
 
@@ -40,7 +40,7 @@ sub find_user {
 sub user_supports {
     my $self = shift;
 
-    # this can work as a class method, but in that case you can't have 
+    # this can work as a class method, but in that case you can't have
     # a custom user class
     ref($self) ? $self->user_class->supports(@_)
         : Catalyst::Authentication::Store::Htpasswd::User->supports(@_);
@@ -79,7 +79,7 @@ __END__
                     },
                 },
             },
-        },   
+        },
     );
 
     sub login : Global {
@@ -117,7 +117,7 @@ Delegates the user lookup to L<find_user|/find_user>
 =head2 file
 
 The path to the htpasswd file. If the path starts with a slash, then it is assumed to be a fully
-qualified path, otherwise the path is fed through C<< $c->path_to >> and so normalised to the 
+qualified path, otherwise the path is fed through C<< $c->path_to >> and so normalised to the
 application root.
 
 Alternatively, it is possible to pass in an L<Authen::Htpasswd> object here, and this will be
