@@ -91,7 +91,7 @@ __END__
 =head1 DESCRIPTION
 
 This plugin uses L<Authen::Htpasswd> to let your application use C<< .htpasswd >>
-files for it's authentication storage.
+files for its authentication storage.
 
 =head1 METHODS
 
