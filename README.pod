@@ -8,7 +8,7 @@ Catalyst::Authentication::Store::Htpasswd - Authen::Htpasswd based user storage/
 
 =head1 VERSION
 
-version 1.005
+version 1.006
 
 =head1 SYNOPSIS
 
@@ -32,7 +32,7 @@ version 1.005
                     },
                 },
             },
-        },   
+        },
     );
 
     sub login : Global {
@@ -43,7 +43,7 @@ version 1.005
 
 =head1 DESCRIPTION
 
-This plugin uses L<Authen::Htpasswd> to let your application use C<<.htpasswd>>
+This plugin uses L<Authen::Htpasswd> to let your application use C<< .htpasswd >>
 files for it's authentication storage.
 
 =head1 METHODS
@@ -58,18 +58,19 @@ Looks up the user, and returns a Catalyst::Authentication::Store::Htpasswd::User
 
 =head2 user_supports
 
-Delegates to L<Catalyst::Authentication::Store::Htpasswd::User->user_supports|Catalyst::Authentication::Store::Htpasswd::User#user_supports>
+Delegates to L<< Catalyst::Authentication::User->supports|Catalyst::Authentication::User/supports >> or an
+override in L<user_class|/user_class>.
 
 =head2 from_session
 
-Delegates the user lookup to C<< find_user >>
+Delegates the user lookup to L<find_user|/find_user>
 
 =head1 CONFIGURATION
 
 =head2 file
 
 The path to the htpasswd file. If the path starts with a slash, then it is assumed to be a fully
-qualified path, otherwise the path is fed through C<< $c->path_to >> and so normalised to the 
+qualified path, otherwise the path is fed through C<< $c->path_to >> and so normalised to the
 application root.
 
 Alternatively, it is possible to pass in an L<Authen::Htpasswd> object here, and this will be
@@ -120,7 +121,7 @@ L<C<#catalyst> on C<irc.perl.org>|irc://irc.perl.org/#catalyst>.
 
 =head1 CONTRIBUTORS
 
-=for stopwords David Kamholz Tomas Doran Karen Etheridge Tom Bloor Ilmari Vacklin
+=for stopwords David Kamholz Tomas Doran Karen Etheridge Tom Bloor Christopher Hoskin Ilmari Vacklin
 
 =over 4
 
@@ -139,6 +140,10 @@ Karen Etheridge <ether@cpan.org>
 =item *
 
 Tom Bloor <t.bloor@shadowcat.co.uk>
+
+=item *
+
+Christopher Hoskin <christopher.hoskin@gmail.com>
 
 =item *
 
