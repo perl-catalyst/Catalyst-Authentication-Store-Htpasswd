@@ -1,6 +1,7 @@
 Release history for Catalyst-Authentication-Store-Htpasswd
 
 {{$NEXT}}
+    - pod formatting fixes (RT#102187, Christopher Hoskin)
 
 1.005     2017-06-23 18:04:28Z
     - modernized the tooling, for 5.26 compatibility and to remove pod,
