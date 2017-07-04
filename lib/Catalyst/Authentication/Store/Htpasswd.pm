@@ -101,7 +101,7 @@ Simple constructor, dies if the htpassword file can't be found
 
 =head2 find_user
 
-Looks up the user, and returns a Catalyst::Authentication::Store::Htpasswd::User object.
+Looks up the user, and returns a L<Catalyst::Authentication::Store::Htpasswd::User> object.
 
 =head2 user_supports
 
